@@ -1,0 +1,9 @@
+{
+    "path" : "~/Desktop/test_finance",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
