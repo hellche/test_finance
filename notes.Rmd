@@ -1,0 +1,30 @@
+доля внебюджета будет отрицательно коррелировать с расходами на преподавательские зарплаты их всех источников.
+
+```{r}
+r1a <- merged_final %>% 
+  mutate(dolya_vnebud = 100*code_150_200_availableMeansEndYear/code_150_200_totalEndYear,
+         zaprp_vse_istoch = code_160_210_totalEndYear) %>% 
+  select(short_name, dolya_vnebud, zaprp_vse_istoch) %>% filter(dolya_vnebud<77)%>% filter(zaprp_vse_istoch>5)
+
+r1a %>% 
+ggplot(aes(dolya_vnebud, zaprp_vse_istoch)) + geom_point() +
+ scale_y_continuous(trans='log10') +
+ geom_smooth(method = "loess", se = FALSE, colour = "#dd4930") +
+  labs(
+    y = "Расходы на преподавательские зарплаты их всех источников (в рублях, взят логарифм)",
+    x = "Доля внебюджетных расходов в общих расходах (%)", 
+    fill = NULL)  + 
+  theme_bw()+
+  theme(legend.position = 'none',
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+
+```
+
+```{r}
+
+cor(r1a$dolya_vnebud, r1a$zaprp_vse_istoch, method = "spearman")
+cor.test(r1a$dolya_vnebud, log10(r1a$zaprp_vse_istoch), method="spearman")
+```
+

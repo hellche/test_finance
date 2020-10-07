@@ -1,0 +1,233 @@
+##### <span style="color: #dd4930"> Приложение 3. Топ вузов по доходам от платных услуг населению и фирмам: в млн. рублей и в % от общих доходов вуза   <span> {.tabset}
+
+```{r}
+#1
+p_s_1 <- merged_final %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Социальные и гуманитарные") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_s_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Социальные и гуманитарные") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_s <- bind_cols(p_s_1,p_s_2) 
+colnames(p_s)[1] <- "Топ вузов - Социальные и гуманитарные" 
+colnames(p_s)[2] <- "в %" 
+colnames(p_s)[3] <- "Топ вузов - Социальные и гуманитарные" 
+colnames(p_s)[4] <- "млн. руб" 
+#2
+p_m_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Медицинские") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_m_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Медицинские") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_m <- bind_cols(p_m_1,p_m_2) 
+colnames(p_m)[1] <- "Топ вузов - Медицинские" 
+colnames(p_m)[2] <- "в %" 
+colnames(p_m)[3] <- "Топ вузов - Медицинские" 
+colnames(p_m)[4] <- "млн. руб"
+#3
+p_t_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Технические") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_t_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Технические") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_t <- bind_cols(p_t_1,p_t_2) 
+colnames(p_t)[1] <- "Топ вузов - Технические" 
+colnames(p_t)[2] <- "в %" 
+colnames(p_t)[3] <- "Топ вузов - Технические" 
+colnames(p_t)[4] <- "млн. руб"
+#4
+p_k_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Классические") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_k_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Классические") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_k <- bind_cols(p_k_1,p_k_2) 
+colnames(p_k)[1] <- "Топ вузов - Классические" 
+colnames(p_k)[2] <- "в %" 
+colnames(p_k)[3] <- "Топ вузов - Классические" 
+colnames(p_k)[4] <- "млн. руб"
+#5
+p_p_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Педагогические") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_p_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Педагогические") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_p <- bind_cols(p_p_1,p_p_2) 
+colnames(p_p)[1] <- "Топ вузов - Педагогические" 
+colnames(p_p)[2] <- "в %" 
+colnames(p_p)[3] <- "Топ вузов - Педагогические" 
+colnames(p_p)[4] <- "млн. руб"
+#6
+p_a_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Аграрные") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_a_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Аграрные") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_a <- bind_cols(p_a_1,p_a_2) 
+colnames(p_a)[1] <- "Топ вузов - Аграрные" 
+colnames(p_a)[2] <- "в %" 
+colnames(p_a)[3] <- "Топ вузов - Аграрные" 
+colnames(p_a)[4] <- "млн. руб"
+#7
+p_ss_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Силовые и спортивные") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_ss_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Силовые и спортивные") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_ss <- bind_cols(p_ss_1,p_ss_2) 
+colnames(p_ss)[1] <- "Топ вузов - Силовые и спортивные" 
+colnames(p_ss)[2] <- "в %" 
+colnames(p_ss)[3] <- "Топ вузов - Силовые и спортивные" 
+colnames(p_ss)[4] <- "млн. руб"
+#8
+p_mun_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Муниципальные") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_mun_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Муниципальные") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_mun <- bind_cols(p_mun_1,p_mun_2) 
+colnames(p_mun)[1] <- "Топ вузов - Муниципальные" 
+colnames(p_mun)[2] <- "в %" 
+colnames(p_mun)[3] <- "Топ вузов - Муниципальные" 
+colnames(p_mun)[4] <- "млн. руб"
+#9
+p_ki_1 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_sh_mark = 100*code_040_130_availableMeansEndYear/code_010_100_totalEndYear) %>% 
+  select(short_name, inc_sh_mark, family_profile) %>% 
+  filter(family_profile == "Культуры и искусств") %>% 
+  arrange(desc(inc_sh_mark)) %>% select(-family_profile)
+
+p_ki_2 <- merged_final %>% dplyr::filter(agencyId != 154506) %>% 
+  mutate(inc_mark = code_040_130_availableMeansEndYear/1000000) %>% 
+  select(short_name, inc_mark, family_profile) %>% 
+  filter(family_profile == "Культуры и искусств") %>% 
+  arrange(desc(inc_mark)) %>% select(-family_profile)
+
+p_ki <- bind_cols(p_ki_1,p_ki_2) 
+colnames(p_ki)[1] <- "Топ вузов - Культуры и искусств" 
+colnames(p_ki)[2] <- "в %" 
+colnames(p_ki)[3] <- "Топ вузов - Культуры и искусств" 
+colnames(p_ki)[4] <- "млн. руб"
+
+```
+
+
+###### Технические {#ap3}
+
+```{r}
+datatable(p_t, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Социальные и гуманитарные 
+
+```{r}
+datatable(p_s, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Медицинские
+
+```{r}
+datatable(p_m, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Классические
+
+```{r}
+datatable(p_k, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Педагогические
+
+```{r}
+datatable(p_p, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+######  Аграрные
+
+```{r}
+datatable(p_a, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+######  Силовые и спортивные
+
+```{r}
+datatable(p_ss, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Муниципальные
+
+```{r}
+datatable(p_mun, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+###### Культуры и искусства
+
+```{r}
+datatable(p_ki, options = list(pageLength = 5)) %>% 
+  formatRound(columns=c(2,4), digits=0, interval = 0, mark = "")
+```
+
+
